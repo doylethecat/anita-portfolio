@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import "tailwindcss";
+
+/* 
+  Premium Typography
+  - Bricolage Grotesque: Characterful, expressive display font
+  - Instrument Sans: Clean, sophisticated body font
+*/
+
+@theme {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary:   #323333;   /* brand blue  → Hero card */
+  --color-primary-rgb: 37, 18, 245;
+  --color-accent:    #589CD0;   /* brand yellow → Contact card */
+  --color-secondary: #F5F4EF;   /* dark charcoal → About card */
+  --color-canvas:    #F5F4EF;   /* deep dark → Project Detail card */
+  --color-card-dark: #F5F4EF;   /* darker black → Skills Detail card */
+  --color-surface:   #528FB5;   /* pure white → Work card */
+  --color-base:      #FFFFFF;   /* pure black */
+
+  /* Primary tints */
+  --color-primary-light: #bfdbfe;   /* blue-100 — muted text on primary bg */
+  --color-primary-glow:  #6FACDC;   /* blue-400 — glow & role accent color */
+  --color-primary-glow-rgb: 96, 165, 250;
+
+  /* Neutral scale */
+  --color-neutral-300: #4b5563;   /* body text on dark bg */
+  --color-neutral-400: #589CD0;   /* muted text on dark bg */
+  --color-neutral-600: #4b5563;   /* muted text on light bg */
+  --color-neutral-800: #1f2937;   /* icon / strong text on light bg */
+
+  --color-primary-fg:   #F5F4EF;   /* text on primary */
+  --color-secondary-fg: #4B7BAE;   /* text on secondary */
+  --color-accent-fg:    #F5F4EF;      /* text on accent */
+  --color-surface-fg:   #F5F4EF;      /* text on surface */
+  --color-canvas-fg:    #323333;   /* text on canvas */
+
+  /* App layout */
+  --color-bg: var(--color-base);
+  --color-fg: var(--color-surface);
+
+  --alpha-light-5:  rgba(255, 255, 255, 0.05);
+  --alpha-light-10: rgba(255, 255, 255, 0.10);
+  --alpha-light-15: rgba(255, 255, 255, 0.15);
+  --alpha-light-20: rgba(255, 255, 255, 0.20);
+  --alpha-light-30: rgba(255, 255, 255, 0.30);
+  --alpha-light-50: rgba(255, 255, 255, 0.50);
+  --alpha-light-80: rgba(255, 255, 255, 0.80);
+  --alpha-dark-5:   rgba(0, 0, 0, 0.05);
+  --alpha-dark-10:  rgba(0, 0, 0, 0.10);
+  --alpha-dark-20:  rgba(0, 0, 0, 0.20);
+  --alpha-dark-40:  rgba(0, 0, 0, 0.40);
+  --alpha-dark-60:  rgba(0, 0, 0, 0.60);
+  --alpha-dark-70:  rgba(0, 0, 0, 0.70);
+  --alpha-dark-80:  rgba(0, 0, 0, 0.80);
+
+  /* Radius & Spacing */
+  --radius-bento: 2.5rem;
+  --radius-card: 1.5rem;
+  --radius-pill: 9999px;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased overflow-x-hidden;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(111,172,220,0.9); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(111,172,220,0.7); }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee.paused {
+  animation-play-state: paused;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
