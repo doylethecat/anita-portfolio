@@ -4,7 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  base: '/anita-portfolio/',
+  // Use a relative base so the build works whether the site is served at
+  // the repository subpath or the site root (GitHub Pages project vs user site).
+  base: './',
   plugins: [
     react(),
     tailwindcss(),
