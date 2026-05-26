@@ -71,3 +71,17 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Wait for Pages to propagate
+        run: |
+          echo "Waiting 10s for GitHub Pages to propagate..."
+          sleep 10
+
+      - name: Check deployed Pages URL
+        run: |
+          URL="https://doylethecat.github.io/anita-portfolio/"
+          echo "Checking $URL"
+          echo "HTTP status (follow redirects):"
+          curl -I -L -s -o /dev/null -w "%{http_code}\n" "$URL" || true
+          echo "\nFirst 200 lines of response body:" 
+          curl -s "$URL" | sed -n '1,200p' || true
