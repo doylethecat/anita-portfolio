@@ -41,6 +41,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Show build output (debug)
+        run: |
+          echo "== dist listing =="
+          ls -la ./dist
+          echo "\n== dist/index.html (first 200 lines) =="
+          sed -n '1,200p' ./dist/index.html || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
